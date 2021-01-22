@@ -1,0 +1,27 @@
+<!-- <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Date création Forum</th>
+      <th>Description</th>
+      <th>TotalThemes</th>
+      <th>TotalViews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{forum.title}}</td>
+      <td>{{forum.date | date: 'short'}}</td>
+      <td>{{forum.description}}</td>
+      <td>{{forum.totalThemes}}</td>
+      <td>{{forum.totalViews}}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<app-theme *ngIf="forum" [forumId]="forum._id"></app-theme>
+
+<!--
+<div class="container">
+  <button class="btn btn-primary" [routerLink]="['/forums/']">Back</button>
+</div> -->

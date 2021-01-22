@@ -1,0 +1,27 @@
+<!-- <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Date création Theme</th>
+      <th>Description</th>
+      <th>TotalPosts</th>
+      <th>TotalViews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="cursor: pointer;">
+      <td>{{theme.title}}</td>
+      <td>{{theme.date | date: 'short'}}</td>
+      <td>{{theme.description}}</td>
+      <td>{{theme.totalPosts}}</td>
+      <td>{{theme.totalViews}}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+    <app-post *ngIf="theme" [themeId]="theme._id"></app-post>
+
+<!-- <div class="container">
+  <button class="btn btn-primary" [routerLink]="['/themes/']">Back</button>
+</div> -->

@@ -1,0 +1,145 @@
+<p-toast></p-toast>
+<p-toast position="top-center" key="tc"></p-toast>
+
+<div class="panel panel-warning">
+  <div class="panel-heading">Themes Crud</div>
+  <div class="panel-body">
+    <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+          (click)="openNew()"></button>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-danger ml-3" (click)="deleteSelectedThemes()" [disabled]="!selectedThemes || !selectedThemes.length"></button>
+
+      </ng-template>
+
+    </p-toolbar>
+
+    <p-table #dt1 *ngIf="themes" [value]="themes"
+      [globalFilterFields]="['title','date','description','totalPosts','totalViews']" [paginator]="true" [rows]="4"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowHover]="true"
+      [(selection)]="selectedThemes"
+      >
+
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+          <span class="p-input-icon-right p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+              placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" sortMode="multiple">
+        <tr>
+          <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="title">Title<p-sortIcon field="title"></p-sortIcon>
+          </th>
+          <th pSortableColumn="date">Date<p-sortIcon field="date"></p-sortIcon>
+          </th>
+          <th pSortableColumn="description">Description<p-sortIcon field="description"></p-sortIcon>
+          </th>
+          <th pSortableColumn="totalPosts">TotalPosts<p-sortIcon field="totalPosts"></p-sortIcon>
+          </th>
+          <th pSortableColumn="totalViews">TotalViews<p-sortIcon field="totalViews"></p-sortIcon>
+          </th>
+          <th>Edit/Delete</th>
+        </tr>
+
+        <tr>
+          <th style="width: 3rem">
+          </th>
+          <th>
+            <p-columnFilter type="text" field="title"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="date"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="description"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="totalPosts"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="totalViews"></p-columnFilter>
+          </th>
+          <th></th>
+
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-theme>
+        <tr style="cursor: pointer;">
+          <td>
+            <p-tableCheckbox [value]="theme"></p-tableCheckbox>
+          </td>
+          <td>{{theme.title}}</td>
+          <td>{{theme.date | date:'short'}}</td>
+          <td>{{theme.description}}</td>
+          <td>{{theme.totalPosts}}</td>
+          <td>{{theme.totalViews}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editTheme(theme)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning ml-2" (click)="deleteTheme(theme)"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">No themes found.</td>
+        </tr>
+      </ng-template>
+
+      <p-paginator [rows]="10" [totalRecords]="themes.length" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+    </p-table>
+  </div>
+</div>
+
+
+
+<p-dialog [(visible)]="themeDialog" [style]="{width: '450px'}" header="Theme Details" [modal]="true"
+	styleClass="p-fluid">
+	<ng-template pTemplate="content">
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input class="form-control" type="text" pInputText id="title" [(ngModel)]="theme.title" required autofocus />
+			<small class="p-invalid" *ngIf="submitted && !theme.title">Title is required.</small>
+		</div>
+		<div class="form-group">
+      <label for="description">Description</label>
+			<textarea class="form-control" id="description" pInputTextarea [(ngModel)]="theme.description" required rows="3" cols="20"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="totalPosts">TotalPosts</label>
+      <input class="form-control" type="text" pInputText id="totalPosts" [(ngModel)]="theme.totalPosts" required autofocus />
+    </div>
+
+    <div class="form-group">
+      <label for="totalViews">TotalViews</label>
+      <input class="form-control" type="text" pInputText id="totalViews" [(ngModel)]="theme.totalViews" required autofocus />
+    </div>
+
+    <div class="form-group">
+      <label for="forum">Forum</label>
+      <select class="form-control" aria-label="Default select example">
+        <option *ngFor="let f of forums" (click)="onChange(f)">{{f.title}}</option>
+      </select>
+    </div>
+
+
+
+	</ng-template>
+
+	<ng-template pTemplate="footer">
+		<button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+		<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveTheme()"></button>
+	</ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

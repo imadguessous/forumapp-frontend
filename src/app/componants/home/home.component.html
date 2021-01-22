@@ -1,0 +1,103 @@
+<!-- Header -->
+<header class="bg-primary py-5 mb-5">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-12">
+        <h1 class="display-4 text-white mt-5 mb-2">Forum App</h1>
+        <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non possimus ab
+          labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam quisquam iste ipsa cumque
+          unde nisi, totam quas ipsam.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+
+
+  <!-- /.row -->
+  <div class="row margin-left mb-4">
+    <h1 style="margin:auto; color:#ef6603"> Hot (Most Viewed)</h1>
+  </div>
+  <div class="row p-mt-4">
+
+    <div *ngIf="mostViewedForum" class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-center">
+            <h3 class="card-title" style="margin:2px 25px; color:#007bff">Most Viewed Forum</h3>
+          </div>
+          <h4 class="card-title" style="color:#ef6603"> {{mostViewedForum.title}}</h4>
+          <p class="card-text">{{mostViewedForum.description}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a (click)="onVisitForum()" class="btn btn-primary ">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostViewedTheme" class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-center">
+            <h3 class="card-title" style="margin:2px 25px; color:#007bff">Most Viewed Theme</h3>
+          </div>
+          <h4 class="card-title" style="color:#ef6603"> {{mostViewedTheme.title}}</h4>
+          <p class="card-text">{{mostViewedTheme.description}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a (click)="onVisitTheme()" class="btn btn-primary ">Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostViewedPost" class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-center">
+            <h3 class="card-title" style="margin:2px 25px; color:#007bff">Most Viewed Post</h3>
+          </div>
+          <h4 class="card-title" style="color:#ef6603"> {{mostViewedPost.title}}</h4>
+          <p class="card-text">{{mostViewedPost.description}}</p>
+        </div>
+        <div class="card-footer text-center">
+          <a (click)="onVisitPost()" class="btn btn-primary ">Visit</a>
+        </div>
+      </div>
+    </div>
+
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-md-8 mb-5">
+      <h2>What We Do</h2>
+      <hr>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta
+        quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo,
+        maiores!</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in
+        nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.
+      </p>
+      <!-- <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a> -->
+    </div>
+    <div class="col-md-4 mb-5">
+      <h2>Contact Us</h2>
+      <hr>
+      <address>
+        <strong>ForumApp Contact</strong>
+        <br>Contact1
+        <br>Contact2
+        <br>
+      </address>
+      <address>
+        <abbr title="Phone">P:</abbr>
+        (212) 6-4567890
+        <br>
+        <abbr title="Email">E:</abbr>
+        <a href="mailto:#">name@example.com</a>
+      </address>
+    </div>
+  </div>
+
+</div>
